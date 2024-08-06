@@ -110,6 +110,16 @@ public function regasuser()
         $user75z = $this->User75zs->newEmptyEntity();
         if ($this->request->is('post')) {
             $user75z = $this->User75zs->patchEntity($user75z, $this->request->getData());
+
+$user75z = $this->request->getUploadedFiles();
+
+
+
+        $user75z->myfoto = $user75z['myfoto']->getClientFilename();
+        $user75z['myfoto']->moveTo(WWW_ROOT . 'img' . DS . $user75z->myfoto);
+
+
+
             if ($this->User75zs->save($user75z)) {
                 $this->Flash->success(__('The user75z has been saved.'));
 
